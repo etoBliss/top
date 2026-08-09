@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
-import TAPMark from './TAPMark.jsx';
+import Logo from './Logo.jsx';
 
 const NAV_LINKS = [
   { label: 'Home', href: '#top' },
@@ -21,10 +21,7 @@ export default function Header() {
     <header className="fixed inset-x-0 top-0 z-50">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-6 py-6 md:px-10 md:py-8">
         <a href="#top" aria-label="TOP — home" className="flex items-center gap-3">
-          <TAPMark size={40} />
-          <span className="font-mono-set text-[14px] font-extrabold tracking-[0.06em] text-ivory">
-            TOP
-          </span>
+          <Logo size={40} />
         </a>
 
         <nav aria-label="Primary" className="hidden md:block">

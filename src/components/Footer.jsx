@@ -1,4 +1,4 @@
-import TAPMark from './TAPMark.jsx';
+import Logo from './Logo.jsx';
 
 const LINKS = [
   { label: 'Home', href: '#top' },
@@ -14,7 +14,7 @@ export default function Footer() {
         <div className="grid gap-12 md:grid-cols-12 md:gap-12">
           <div className="md:col-span-6">
             <div className="flex items-center gap-3">
-              <TAPMark size={44} />
+              <Logo size={44} />
               <span className="font-mono-set text-[15px] font-extrabold tracking-[0.06em] text-ivory">
                 TOP
               </span>
