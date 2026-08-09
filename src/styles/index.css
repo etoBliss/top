@@ -1,0 +1,108 @@
+@import 'tailwindcss';
+
+/* ================================================================
+   TOP Campaign — Design System (v4 — Simple Editorial)
+   Minimal · flat · generous whitespace · type does the work
+   ================================================================ */
+
+@theme {
+  /* Palette */
+  --color-wine: #6E1B24;
+  --color-crimson-start: #C1392B;
+  --color-crimson-end: #7A1E12;
+  --color-ink: #0A0A0A;
+  --color-ink-soft: #131313;
+  --color-ink-elev: #1A1A1A;
+  --color-line: rgba(255, 255, 255, 0.08);
+  --color-gold: #D9A441;
+  --color-ivory: #F4ECE3;
+  --color-ivory-muted: rgba(244, 236, 227, 0.65);
+  --color-ivory-faint: rgba(244, 236, 227, 0.40);
+  --color-paper: #FBF3EE;
+
+  /* Type */
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-mono: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+  --font-sans: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-ivory);
+    background: var(--color-ink);
+    font-feature-settings: 'ss01', 'cv11';
+  }
+
+  ::selection {
+    background: var(--color-crimson-start);
+    color: var(--color-paper);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 3px;
+  }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(244, 236, 227, 0.15);
+    border-radius: 999px;
+  }
+}
+
+@layer utilities {
+  .font-display { font-family: var(--font-display); }
+  .font-mono-set { font-family: var(--font-mono); }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+
+  .display-italic {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.012em;
+  }
+
+  .surface-ink { background: var(--color-ink); color: var(--color-ivory); }
+  .surface-ink-soft { background: var(--color-ink-soft); color: var(--color-ivory); }
+
+  .bg-crimson-grad {
+    background-image: linear-gradient(
+      135deg,
+      var(--color-crimson-start) 0%,
+      var(--color-wine) 100%
+    );
+  }
+
+  .motion-safe {
+    transition-property: transform, opacity, color, background-color;
+    transition-duration: 380ms;
+    transition-timing-function: cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+    .motion-safe { transition: none !important; }
+  }
+}
