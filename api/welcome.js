@@ -6,6 +6,16 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 const FROM_ADDRESS = process.env.RESEND_FROM || 'topcampaign@theoluwadolapopopoola.com';
 const SITE_ORIGIN = process.env.SITE_ORIGIN || '';
 
+let UNSUBSCRIBE_EMAIL = process.env.RESEND_UNSUBSCRIBE_EMAIL || '';
+if (!UNSUBSCRIBE_EMAIL && SITE_ORIGIN) {
+  try {
+    const u = new URL(SITE_ORIGIN);
+    UNSUBSCRIBE_EMAIL = `unsubscribe@${u.hostname}`;
+  } catch (e) {
+    // ignore
+  }
+}
+
 function sanitizeHtml(html) {
   return String(html).replace(/<script[\s\S]*?>[\s\S]*?<\/script>/gi, '');
 }
@@ -15,8 +25,25 @@ function escapeHtml(value) {
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
+    .replace(/\"/g, '&quot;')
     .replace(/'/g, '&#39;');
+}
+
+function linkifyAndResolve(body) {
+  let processed = String(body || '');
+  if (SITE_ORIGIN) {
+    processed = processed.replace(/\/(preferences|unsubscribe)([^\s\n\r]*)/g, (m) => `${SITE_ORIGIN}${m}`);
+    processed = processed.replace(/\/(cadence-logo-primary\.svg)/g, `${SITE_ORIGIN}/$1`);
+  }
+  processed = escapeHtml(processed);
+  processed = processed.replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>');
+  if (SITE_ORIGIN) {
+    const esc = SITE_ORIGIN.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const hostRe = new RegExp(`${esc}[^\s<]*`, 'g');
+    processed = processed.replace(hostRe, (m) => `<a href="${m}" target="_blank" rel="noopener noreferrer">${m}</a>`);
+  }
+  processed = processed.replace(/\r?\n/g, '<br/>');
+  return processed;
 }
 
 function renderHtml(body) {
@@ -28,8 +55,8 @@ function renderHtml(body) {
   try { footer = fs.readFileSync(footerPath, 'utf8'); } catch (e) {}
   header = header.replace(/{{SITE_ORIGIN}}/g, SITE_ORIGIN);
   footer = footer.replace(/{{SITE_ORIGIN}}/g, SITE_ORIGIN);
-  const escapedBody = escapeHtml(body).replace(/\r?\n/g, '<br/>');
-  return `${header}\n<div style="line-height:1.75;color:#0A0A0A;font-size:16px;">${escapedBody}</div>\n${footer}`;
+  const processed = linkifyAndResolve(body);
+  return `${header}\n<div style="line-height:1.75;color:#0A0A0A;font-size:16px;">${processed}</div>\n${footer}`;
 }
 
 export default async function handler(req, res) {
@@ -89,14 +116,18 @@ export default async function handler(req, res) {
     const html = renderHtml(sanitizeHtml(body));
     const text = String(body).trim();
     let result;
+    const headers = UNSUBSCRIBE_EMAIL
+      ? { 'List-Unsubscribe': `<mailto:${UNSUBSCRIBE_EMAIL}>, <${SITE_ORIGIN}/unsubscribe>` }
+      : {};
+
     if (resend?.batch && typeof resend.batch.send === 'function') {
-      result = await resend.batch.send({ from: FROM_ADDRESS, to: [String(email).trim()], subject, text, html });
+      result = await resend.batch.send({ from: FROM_ADDRESS, to: [String(email).trim()], subject, text, html, headers });
     } else if (resend?.emails && typeof resend.emails.send === 'function') {
-      result = await resend.emails.send({ from: FROM_ADDRESS, to: [String(email).trim()], subject, text, html });
+      result = await resend.emails.send({ from: FROM_ADDRESS, to: [String(email).trim()], subject, text, html, headers });
     } else if (typeof resend.send === 'function') {
-      result = await resend.send({ from: FROM_ADDRESS, to: [String(email).trim()], subject, text, html });
+      result = await resend.send({ from: FROM_ADDRESS, to: [String(email).trim()], subject, text, html, headers });
     } else if (resend?.messages && typeof resend.messages.send === 'function') {
-      result = await resend.messages.send({ from: FROM_ADDRESS, to: [String(email).trim()], subject, text, html });
+      result = await resend.messages.send({ from: FROM_ADDRESS, to: [String(email).trim()], subject, text, html, headers });
     } else {
       console.error('Unsupported Resend SDK instance', Object.keys(resend || {}));
       throw new Error('Unsupported Resend SDK');
