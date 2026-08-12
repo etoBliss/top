@@ -1,8 +1,9 @@
 @import 'tailwindcss';
 
 /* ================================================================
-   TOP Campaign — Design System (v4 — Simple Editorial)
-   Minimal · flat · generous whitespace · type does the work
+   TOP Campaign — Design System (v5 — App-shaped editorial)
+   Modern, soft, mobile-first. Bento cards, sticky bottom dock,
+   fluid type, glass surfaces, soft shadows.
    ================================================================ */
 
 @theme {
@@ -13,12 +14,29 @@
   --color-ink: #0A0A0A;
   --color-ink-soft: #131313;
   --color-ink-elev: #1A1A1A;
+  --color-ink-card: #141414;
   --color-line: rgba(255, 255, 255, 0.08);
+  --color-line-strong: rgba(255, 255, 255, 0.14);
   --color-gold: #D9A441;
+  --color-gold-soft: rgba(217, 164, 65, 0.16);
   --color-ivory: #F4ECE3;
   --color-ivory-muted: rgba(244, 236, 227, 0.65);
   --color-ivory-faint: rgba(244, 236, 227, 0.40);
   --color-paper: #FBF3EE;
+
+  /* Radii */
+  --radius-card: 24px;
+  --radius-card-lg: 32px;
+  --radius-control: 14px;
+  --radius-pill: 999px;
+
+  /* Shadows */
+  --shadow-card: 0 1px 0 0 rgba(255, 255, 255, 0.04) inset,
+                 0 14px 30px -16px rgba(0, 0, 0, 0.55);
+  --shadow-card-hover: 0 1px 0 0 rgba(255, 255, 255, 0.06) inset,
+                       0 22px 50px -16px rgba(0, 0, 0, 0.7);
+  --shadow-dock: 0 18px 40px -10px rgba(0, 0, 0, 0.6),
+                 0 1px 0 0 rgba(255, 255, 255, 0.05) inset;
 
   /* Type */
   --font-display: 'Playfair Display', Georgia, serif;
@@ -39,6 +57,9 @@
     background: var(--color-ink);
     font-feature-settings: 'ss01', 'cv11';
   }
+
+  /* iOS safe-area support */
+  body { padding-bottom: env(safe-area-inset-bottom); }
 
   ::selection {
     background: var(--color-crimson-start);
@@ -77,9 +98,73 @@
     letter-spacing: -0.012em;
   }
 
+  /* Surfaces ------------------------------------------------------- */
   .surface-ink { background: var(--color-ink); color: var(--color-ivory); }
   .surface-ink-soft { background: var(--color-ink-soft); color: var(--color-ivory); }
+  .surface-ink-elev { background: var(--color-ink-elev); color: var(--color-ivory); }
 
+  /* The "bento" card — single source of truth for cards across pages */
+  .bento {
+    background: var(--color-ink-card);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+    transition: transform 480ms cubic-bezier(0.2, 0.7, 0.2, 1),
+                border-color 280ms ease,
+                box-shadow 480ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .bento:hover {
+    border-color: var(--color-line-strong);
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-2px);
+  }
+  .bento-flat {
+    background: var(--color-ink-card);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-card);
+  }
+
+  /* Page wrapper to keep consistent rhythm on every route */
+  .page-gutter { padding-left: 20px; padding-right: 20px; }
+  @media (min-width: 768px) {
+    .page-gutter { padding-left: 32px; padding-right: 32px; }
+  }
+  @media (min-width: 1024px) {
+    .page-gutter { padding-left: 48px; padding-right: 48px; }
+  }
+
+  /* Section title rhythm shared by every page */
+  .section-title {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.012em;
+  }
+
+  /* Tag pill — small, frequent decoration */
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--color-line);
+    background: rgba(244, 236, 227, 0.04);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-ivory);
+  }
+  .pill-gold {
+    border-color: rgba(217, 164, 65, 0.4);
+    background: var(--color-gold-soft);
+    color: var(--color-gold);
+  }
+
+  /* Gradients */
   .bg-crimson-grad {
     background-image: linear-gradient(
       135deg,
@@ -87,17 +172,79 @@
       var(--color-wine) 100%
     );
   }
+  .bg-wine-grad {
+    background-image: linear-gradient(
+      155deg,
+      var(--color-wine) 0%,
+      var(--color-crimson-end) 100%
+    );
+  }
+  .gradient-text {
+    background: linear-gradient(180deg, #F4ECE3 0%, rgba(244, 236, 227, 0.55) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
 
+  /* Glass surface — used on top nav and bottom dock */
+  .glass {
+    background: rgba(10, 10, 10, 0.72);
+    -webkit-backdrop-filter: saturate(140%) blur(18px);
+    backdrop-filter: saturate(140%) blur(18px);
+  }
+
+  /* Dock item */
+  .dock-item {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    padding: 6px 12px;
+    border-radius: 16px;
+    color: var(--color-ivory-faint);
+    transition: color 220ms ease, transform 220ms ease;
+    min-width: 60px;
+  }
+  .dock-item:hover { color: var(--color-ivory); }
+  .dock-item-active {
+    color: var(--color-gold);
+    background: rgba(217, 164, 65, 0.10);
+  }
+
+  /* Hairline rule */
+  .hairline { border-top: 1px solid var(--color-line); }
+  .hairline-b { border-bottom: 1px solid var(--color-line); }
+  .hairline-y {
+    border-top: 1px solid var(--color-line);
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  /* Motion easing */
   .motion-safe {
-    transition-property: transform, opacity, color, background-color;
+    transition-property: transform, opacity, color, background-color, border-color, box-shadow;
     transition-duration: 380ms;
     transition-timing-function: cubic-bezier(0.2, 0.7, 0.2, 1);
   }
 
+  /* Subtle grain for warmth on bento cards */
+  .grain {
+    position: relative;
+    isolation: isolate;
+  }
+  .grain::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    opacity: 0.04;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+
   @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
+    *, *::before, *::after {
       animation-duration: 0.001ms !important;
       animation-iteration-count: 1 !important;
       transition-duration: 0.001ms !important;

@@ -1,4 +1,4 @@
-import logoUrl from '../../public/logo.jpeg';
+import logoUrl from '/logo.jpeg?url';
 
 /**
  * Logo — campaign logo image.

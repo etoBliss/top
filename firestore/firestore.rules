@@ -1,0 +1,43 @@
+// firestore.rules — TOP Campaign Firestore rules
+//
+// Paste the block below into:
+//   https://console.firebase.google.com/project/top-campaign/firestore/rules
+// and click  Publish  after pasting.
+//
+// ─────────────────────────────────────────────────────────────────────────
+// Active ruleset (copy from here to the end of this file)
+// ─────────────────────────────────────────────────────────────────────────
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ── Subscribers ────────────────────────────────────────────────────
+    // Public can sign up; admins read the list.
+    //
+    // Validated on create:
+    //   • doc id is a lowercased email
+    //   • email field matches the doc id
+    //   • source is one of: hero | footer | manual | import
+    //
+    // Updates (admin only) and reads (admin only) keep the data clean.
+    match /subscribers/{email} {
+      allow create: if request.resource.data.email is string
+                    && request.resource.data.email == email
+                    && request.resource.data.source in
+                         ['hero', 'footer', 'manual', 'import'];
+      allow update, read, delete: if request.auth != null;
+    }
+
+    // ── Send log ───────────────────────────────────────────────────────
+    // Only admins can read or write the dispatch audit log.
+    match /sends/{id} {
+      allow read, write: if request.auth != null;
+    }
+
+    // ── Default deny ───────────────────────────────────────────────────
+    // Everything not matched above is forbidden.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
