@@ -430,7 +430,7 @@ export default function Landing() {
         <div className="grid gap-4 sm:gap-6 md:grid-cols-3 md:gap-6">
           {[
             { icon: BookOpen, eyebrow: 'Representation', title: 'Every voice counted.', body: 'A president that answers — not performs.' },
-            { icon: Award,     eyebrow: 'Welfare',        title: 'Money that helps.',     body: 'Scholarship funds that reach the students who need them.' },
+            { icon: Award,     eyebrow: 'Welfare',        title: 'Health that Cares',     body: 'Career and Scholarship Oppurtunities that put students on.' },
             { icon: Users,     eyebrow: 'Community',      title: 'Rooms for everyone.',   body: 'Conventions, summits, and skills that build careers.' },
           ].map((m, i) => {
             const Icon = m.icon;
