@@ -1,0 +1,39 @@
+<!-- Unified email template: single file used instead of separate header/footer -->
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>TOP Campaign</title>
+  </head>
+  <body style="margin:0;padding:0;font-family:Inter, system-ui, -apple-system, Arial, Helvetica, sans-serif;background:#FAF8F4;color:#0A0A0A;">
+    <div style="max-width:740px;margin:0 auto;">
+      <!-- Hero / banner -->
+      <div style="position:relative;overflow:hidden;background:#0A0A0A;color:#F4ECE3;padding:28px 24px 18px;text-align:left;">
+        <div style="display:flex;align-items:center;gap:14px;">
+          <img src="{{SITE_ORIGIN}}/logo.jpeg" alt="TOP" width="84" style="display:block;border-radius:6px;object-fit:cover;" />
+          <div>
+            <div style="font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#E5D4B5;font-size:13px;">TOP Campaign</div>
+            <div style="font-size:20px;color:#FFFFFF;font-weight:600;margin-top:6px;">Countdown update</div>
+          </div>
+        </div>
+        <div style="position:absolute;right:0;top:0;width:240px;height:100%;background:linear-gradient(180deg,rgba(201,161,90,0.08),transparent);opacity:0.9;pointer-events:none;"></div>
+      </div>
+
+      <!-- Body placeholder -->
+      <div style="background:#FFFFFF;padding:28px 24px;color:#0A0A0A;font-size:16px;line-height:1.6;">
+        {{BODY}}
+      </div>
+
+      <!-- Footer (kept minimal inside single template) -->
+      <div style="background:#0A0A0A;color:#D8CEC1;padding:20px 24px;text-align:center;font-size:13px;">
+        <p style="margin:0 0 12px;">You are receiving this because you signed up for TOP Campaign updates.</p>
+        <div style="display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap;">
+          <a href="{{SITE_ORIGIN}}/preferences" style="color:#C9A227;text-decoration:none;font-weight:600;">Manage preferences</a>
+          <a href="{{SITE_ORIGIN}}/api/unsubscribe" style="background:#C9A227;color:#0A0A0A;padding:10px 14px;border-radius:8px;text-decoration:none;font-weight:600;">Unsubscribe</a>
+        </div>
+        <p style="margin:12px 0 0;color:#AFA69B;font-size:12px;">Prefer to email? Reply with "unsubscribe" and we will remove you.</p>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Unsubscribed — TOP Campaign</title>
+    <style>
+      body{font-family:Inter,system-ui,Arial,Helvetica,sans-serif;background:#FAF8F4;color:#0A0A0A;margin:0}
+      .wrap{max-width:680px;margin:60px auto;padding:20px}
+      .card{background:#fff;padding:28px;border-radius:10px;box-shadow:0 8px 24px rgba(10,10,10,0.06);text-align:center}
+      a.button{display:inline-block;margin-top:18px;background:#C9A227;color:#081014;padding:10px 16px;border-radius:8px;text-decoration:none;font-weight:700}
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="card">
+        <h1 style="margin:0 0 8px">You have been unsubscribed</h1>
+        <p id="msg" style="color:#666;margin:0 0 16px">We're sorry to see you go. If this was a mistake, you can resubscribe on the campaign page.</p>
+        <p id="email" style="color:#444;margin:8px 0 12px;font-weight:600"></p>
+        <a class="button" href="/">Return to campaign</a>
+      </div>
+    </div>
+    <script>
+      (function(){
+        try {
+          const params = new URLSearchParams(window.location.search);
+          const email = params.get('email');
+          if (email) {
+            // show a small personalized confirmation (escape dangerous chars)
+            const el = document.getElementById('email');
+            const msg = document.getElementById('msg');
+            const safe = String(email).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+            el.textContent = `Unsubscribed: ${safe}`;
+            if (msg) msg.textContent = 'You have been removed from the mailing list.';
+          }
+        } catch (e) { /* ignore */ }
+      })();
+    </script>
+    </div>
+  </body>
+</html>

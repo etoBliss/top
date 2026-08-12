@@ -58,16 +58,14 @@ function linkifyAndResolve(body) {
 }
 
 function renderHtml(body) {
-  const headerPath = path.join(process.cwd(), 'public', 'email_header.html');
-  const footerPath = path.join(process.cwd(), 'public', 'email_footer.html');
-  let header = '';
-  let footer = '';
-  try { header = fs.readFileSync(headerPath, 'utf8'); } catch (e) {}
-  try { footer = fs.readFileSync(footerPath, 'utf8'); } catch (e) {}
-  header = header.replace(/{{SITE_ORIGIN}}/g, SITE_ORIGIN);
-  footer = footer.replace(/{{SITE_ORIGIN}}/g, SITE_ORIGIN);
+  const tplPath = path.join(process.cwd(), 'public', 'email_template.html');
+  let tpl = '';
+  try { tpl = fs.readFileSync(tplPath, 'utf8'); } catch (e) {}
+  tpl = tpl.replace(/{{SITE_ORIGIN}}/g, SITE_ORIGIN);
   const processed = linkifyAndResolve(body);
-  return `${header}\n<div style="line-height:1.75;color:#0A0A0A;font-size:16px;">${processed}</div>\n${footer}`;
+  // Inject processed body HTML into the template placeholder
+  tpl = tpl.replace(/{{BODY}}/g, processed);
+  return tpl;
 }
 
 export default async function handler(req, res) {
