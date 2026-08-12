@@ -102,7 +102,9 @@ function Login() {
     try {
       await signInWithEmailAndPassword(auth, email.trim(), password);
     } catch (e2) {
-      setErr(e2?.message || 'Login failed.');
+      const code = e2?.code ? `${e2.code}` : '';
+      const msg = e2?.message ? `${e2.message}` : 'Login failed.';
+      setErr(code ? `${code}: ${msg}` : msg);
     } finally {
       setBusy(false);
     }
