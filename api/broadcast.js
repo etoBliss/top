@@ -55,12 +55,26 @@ export default async function handler(req, res) {
 
   try {
     const html = renderHtml(sanitizeHtml(body));
-    const result = await resend.batch.send({
-      from: FROM_ADDRESS,
-      to: recipients,
-      subject: String(subject),
-      html,
-    });
+
+    let result;
+    if (resend?.emails && typeof resend.emails.send === 'function') {
+      result = await resend.emails.send({
+        from: FROM_ADDRESS,
+        to: recipients,
+        subject: String(subject),
+        html,
+      });
+    } else if (typeof resend.send === 'function') {
+      result = await resend.send({
+        from: FROM_ADDRESS,
+        to: recipients,
+        subject: String(subject),
+        html,
+      });
+    } else {
+      console.error('Unsupported Resend SDK instance', Object.keys(resend || {}));
+      throw new Error('Unsupported Resend SDK. Please upgrade the Resend package or update the function implementation.');
+    }
 
     return res.status(200).json({ ok: true, result });
   } catch (error) {
