@@ -334,11 +334,63 @@ function SubscribersPanel({ subscribers, loading }) {
   );
 }
 
+const TEMPLATES = [
+  {
+    id: 'launchCountdown',
+    label: 'Launch countdown',
+    subject: 'Countdown to TOP Campaign launch — 72 hours to go',
+    body: `Hello,
+
+The countdown is on. In just three days the campaign goes live, and we need every supporter ready.
+
+Please keep an eye on your inbox for the next dispatch — new actions, event updates, and ways to help turn momentum into impact.
+
+— TOP Campaign`,
+  },
+  {
+    id: 'finalReminder',
+    label: 'Final reminder',
+    subject: 'Final reminder: countdown to campaign launch',
+    body: `Hi there,
+
+This is your last reminder before launch day. The countdown is ticking, and your support matters now more than ever.
+
+Share the campaign, invite friends, and stand by for the first major update.
+
+— TOP Campaign`,
+  },
+  {
+    id: 'countdownPreview',
+    label: 'Countdown preview',
+    subject: 'Preview inside: campaign countdown updates',
+    body: `Hello,
+
+A fresh dispatch is ready with the countdown energy: the campaign is closing in fast.
+
+Expect a short series of high-impact updates, invitations, and milestone announcements before launch.
+
+— TOP Campaign`,
+  },
+  {
+    id: 'launchReadiness',
+    label: 'Launch readiness',
+    subject: 'Launch readiness: one final countdown update',
+    body: `Hello,
+
+The launch window is approaching, and this final countdown update is built to keep the team ready.
+
+If you want to join the core actions, now is the time to check your inbox, share the campaign, and stay tuned for launch day instructions.
+
+— TOP Campaign`,
+  },
+];
+
 /* ───────────────────────────── Compose / Send ───────────────────────────── */
 
 function ComposePanel({ subscribers, onSent }) {
   const [subject, setSubject] = useState('');
   const [body, setBody] = useState('');
+  const [selectedTemplate, setSelectedTemplate] = useState(TEMPLATES[0].id);
   const [busy, setBusy] = useState(false);
   const [progress, setProgress] = useState(null);
   const [feedback, setFeedback] = useState('');
@@ -403,6 +455,42 @@ function ComposePanel({ subscribers, onSent }) {
           The admin page sends broadcasts to <code className="text-gold">/api/broadcast</code>.
         </p>
       )}
+
+      <div className="mt-6 grid gap-4 md:grid-cols-[1.2fr_auto]">
+        <label className="block">
+          <span className="font-mono-set text-[10px] uppercase tracking-[0.22em] text-gold">
+            Template
+          </span>
+          <select
+            value={selectedTemplate}
+            onChange={(e) => setSelectedTemplate(e.target.value)}
+            className="mt-2 w-full border-b border-line bg-transparent px-1 py-2 text-[14px] text-ivory outline-none focus:border-ivory motion-safe"
+          >
+            {TEMPLATES.map((template) => (
+              <option key={template.id} value={template.id}>
+                {template.label}
+              </option>
+            ))}
+          </select>
+        </label>
+        <button
+          type="button"
+          onClick={() => {
+            const template = TEMPLATES.find((item) => item.id === selectedTemplate);
+            if (template) {
+              setSubject(template.subject);
+              setBody(template.body);
+            }
+          }}
+          className="mt-6 inline-flex items-center justify-center rounded-full bg-white/5 px-5 py-3 text-[12px] font-semibold uppercase tracking-[0.22em] text-gold transition hover:bg-white/10"
+        >
+          Load template
+        </button>
+      </div>
+
+      <p className="mt-3 max-w-xl text-[12px] leading-relaxed text-ivory-muted">
+        Tip: keep subject lines clear, send from a verified campaign domain, and include a plain-text fallback. That reduces spam risk and helps the email land more reliably.
+      </p>
 
       <label className="mt-6 block">
         <span className="font-mono-set text-[10px] uppercase tracking-[0.22em] text-gold">

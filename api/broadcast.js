@@ -12,6 +12,15 @@ function sanitizeHtml(html) {
   return String(html).replace(/<script[\s\S]*?>[\s\S]*?<\/script>/gi, '');
 }
 
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 function renderHtml(body) {
   const headerPath = path.join(process.cwd(), 'public', 'email_header.html');
   const footerPath = path.join(process.cwd(), 'public', 'email_footer.html');
@@ -21,7 +30,8 @@ function renderHtml(body) {
   try { footer = fs.readFileSync(footerPath, 'utf8'); } catch (e) {}
   header = header.replace(/{{SITE_ORIGIN}}/g, SITE_ORIGIN);
   footer = footer.replace(/{{SITE_ORIGIN}}/g, SITE_ORIGIN);
-  return `${header}\n<div>${body}</div>\n${footer}`;
+  const escapedBody = escapeHtml(body).replace(/\r?\n/g, '<br/>');
+  return `${header}\n<div style="line-height:1.75;color:#0A0A0A;font-size:16px;">${escapedBody}</div>\n${footer}`;
 }
 
 export default async function handler(req, res) {
@@ -56,12 +66,14 @@ export default async function handler(req, res) {
   try {
     const html = renderHtml(sanitizeHtml(body));
 
+    const text = String(body).trim();
     let result;
     if (resend?.emails && typeof resend.emails.send === 'function') {
       result = await resend.emails.send({
         from: FROM_ADDRESS,
         to: recipients,
         subject: String(subject),
+        text,
         html,
       });
     } else if (typeof resend.send === 'function') {
@@ -69,6 +81,7 @@ export default async function handler(req, res) {
         from: FROM_ADDRESS,
         to: recipients,
         subject: String(subject),
+        text,
         html,
       });
     } else {

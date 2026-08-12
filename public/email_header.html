@@ -1,8 +1,18 @@
-<!-- Simple email header template -->
-<div style="background:#0A0A0A;color:#F4ECE3;padding:24px;text-align:center;font-family:Inter,system-ui,Arial,Helvetica,sans-serif;">
-  <a href="{{SITE_ORIGIN}}" style="color:inherit;text-decoration:none;display:inline-block;">
-    <img src="{{SITE_ORIGIN}}/cadence-logo-primary.svg" alt="TOP Campaign" width="160" style="display:block;margin:0 auto 8px;" />
-    <div style="font-weight:600;letter-spacing:0.02em">TOP Campaign</div>
-  </a>
+<!-- Countdown-themed email header template -->
+<div style="position:relative;overflow:hidden;background:#0A0A0A;color:#F4ECE3;padding:28px 24px 20px;text-align:center;font-family:Inter,system-ui,Arial,Helvetica,sans-serif;">
+  <div style="position:absolute;inset:0;background:radial-gradient(circle at 20% 20%,rgba(201,161,90,0.18),transparent 30%),radial-gradient(circle at 80% 10%,rgba(255,255,255,0.14),transparent 22%),linear-gradient(180deg,rgba(255,255,255,0.05),transparent 55%);"></div>
+  <div style="position:relative;z-index:1;">
+    <a href="{{SITE_ORIGIN}}" style="color:inherit;text-decoration:none;display:inline-block;">
+      <img src="{{SITE_ORIGIN}}/cadence-logo-primary.svg" alt="TOP Campaign" width="160" style="display:block;margin:0 auto 12px;filter:brightness(1.15);" />
+      <div style="font-weight:700;letter-spacing:0.18em;text-transform:uppercase;font-size:14px;">TOP Campaign</div>
+    </a>
+    <p style="margin:18px auto 0;max-width:520px;font-size:18px;line-height:1.5;color:#F4ECE3;">Countdown mode activated. Every update is designed to land fast, feel urgent, and keep supporters aligned with the next milestone.</p>
+  </div>
 </div>
-<div style="padding:24px;background:#FAF8F4;color:#0A0A0A;font-family:Inter,system-ui,Arial,Helvetica,sans-serif;">
+<div style="padding:32px 24px 24px;background:#FAF8F4;color:#0A0A0A;font-family:Inter,system-ui,Arial,Helvetica,sans-serif;">
+  <div style="position:absolute;top:0;left:50%;width:120%;height:120px;transform:translateX(-50%);background:linear-gradient(180deg,rgba(255,255,255,0.55),transparent);pointer-events:none;mix-blend-mode:screen;"></div>
+  <div style="position:relative;z-index:1;">
+    <div style="font-size:24px;font-weight:700;letter-spacing:0.04em;margin-bottom:8px;color:#0A0A0A;">Countdown dispatch</div>
+    <div style="font-size:14px;line-height:1.8;color:#4A4A4A;">Styled for urgent updates, preparation notes, and launch reminders. The visual tone is dark, modern, and clean.</div>
+  </div>
+</div>
