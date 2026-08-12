@@ -77,12 +77,19 @@ export default async function handler(req, res) {
 
   try {
     const html = renderHtml(sanitizeHtml(body));
-    const result = await resend.batch.send({
-      from: FROM_ADDRESS,
-      to: [String(email).trim()],
-      subject,
-      html,
-    });
+    let result;
+    if (resend?.batch && typeof resend.batch.send === 'function') {
+      result = await resend.batch.send({ from: FROM_ADDRESS, to: [String(email).trim()], subject, html });
+    } else if (resend?.emails && typeof resend.emails.send === 'function') {
+      result = await resend.emails.send({ from: FROM_ADDRESS, to: [String(email).trim()], subject, html });
+    } else if (typeof resend.send === 'function') {
+      result = await resend.send({ from: FROM_ADDRESS, to: [String(email).trim()], subject, html });
+    } else if (resend?.messages && typeof resend.messages.send === 'function') {
+      result = await resend.messages.send({ from: FROM_ADDRESS, to: [String(email).trim()], subject, html });
+    } else {
+      console.error('Unsupported Resend SDK instance', Object.keys(resend || {}));
+      throw new Error('Unsupported Resend SDK');
+    }
     return res.status(200).json({ ok: true, result });
   } catch (e) {
     console.error('welcome send error', e);
