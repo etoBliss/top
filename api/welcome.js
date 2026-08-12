@@ -28,11 +28,44 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
+  // DEBUG: log incoming headers/body to Vercel logs for troubleshooting
+  try {
+    const safeHeaders = { ...req.headers };
+    if (safeHeaders.authorization) safeHeaders.authorization = '[REDACTED]';
+    console.error('incoming welcome request', { headers: safeHeaders, body: req.body });
+  } catch (logErr) {
+    console.error('failed to log incoming request', logErr);
+  }
+
+  function extractEmail(req) {
+    // 1) JSON body
+    if (req.body && typeof req.body === 'object' && req.body.email) return String(req.body.email).trim();
+    // 2) body as string (try parse)
+    if (req.body && typeof req.body === 'string') {
+      try {
+        const parsed = JSON.parse(req.body);
+        if (parsed.email) return String(parsed.email).trim();
+      } catch (e) {
+        // not JSON
+        const m = req.body.match(/email=([^&]+)/);
+        if (m) return decodeURIComponent(m[1]);
+      }
+    }
+    // 3) query string
+    if (req.query && req.query.email) return String(req.query.email).trim();
+    // 4) header
+    if (req.headers && (req.headers['x-email'] || req.headers['email'])) return String(req.headers['x-email'] || req.headers['email']).trim();
+    return null;
+  }
+
   if (!process.env.RESEND_API_KEY) {
+    console.error('RESEND_API_KEY missing in environment');
     return res.status(500).json({ error: 'RESEND_API_KEY is not configured' });
   }
 
-  const { email, dept, source } = req.body || {};
+  const email = extractEmail(req);
+  const dept = (req.body && req.body.dept) || req.query?.dept || null;
+  const source = (req.body && req.body.source) || req.query?.source || 'unknown';
   if (!email || !email.includes('@')) return res.status(400).json({ error: 'email required' });
 
   const subject = 'Welcome — you are subscribed to TOP updates';
@@ -52,6 +85,7 @@ export default async function handler(req, res) {
     });
     return res.status(200).json({ ok: true, result });
   } catch (e) {
+    console.error('welcome send error', e);
     return res.status(500).json({ error: e instanceof Error ? e.message : String(e) });
   }
 }
