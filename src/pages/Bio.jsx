@@ -51,8 +51,8 @@ export default function Bio() {
 
                 <div className="mt-auto flex flex-wrap gap-2 pt-8">
                   <Pill icon={GraduationCap}>{CANDIDATE.summary}</Pill>
-                  <Pill icon={MapPin}>LAUMSA · Lagos NG</Pill>
-                  <Pill icon={Calendar}>Class of 2026</Pill>
+                  <Pill icon={MapPin}>LAUMSA · Ogbomoso NG</Pill>
+                  <Pill icon={Calendar}>Class of 2027</Pill>
                 </div>
               </div>
             </Reveal>
@@ -76,7 +76,7 @@ export default function Bio() {
           <div className="grid gap-4 sm:gap-6 md:grid-cols-4">
             <StatTile value="10+" label="Positions" hint="External + internal" delay={0} />
             <StatTile value="3"   label="Scholarships" delay={120} />
-            <StatTile value="20+" label="Conventions" delay={240} />
+            <StatTile value="7+" label="Conventions" delay={240} />
             <StatTile value="1"   label="Goal" accent="crimson" hint="Lead LAUMSA with direction." delay={360} />
           </div>
         </section>
@@ -88,14 +88,14 @@ export default function Bio() {
             <div className="mt-6 space-y-5 text-[15px] leading-relaxed text-ivory/85">
               <p>
                 My name is <span className="text-gold">Oluwadolapo Popoola</span>,
-                but people just call me TOP. I'm a final-year student who has
-                spent the last three years showing up — for class boards, for
+                but people just call me TOP. I'm a 500 Level student who has
+                spent the last five years showing up — for class boards, for
                 committees, for trips, for the late-night edits, for the
                 small thankless things that turn ideas into rooms and rooms
                 into results.
               </p>
               <p>
-                I started small. Head of a social committee. Class Governor.
+                I started small. Member of a social committee. Class Governor.
                 Assistant General Secretary. Then external — sitting in
                 conventions, building campaigns, organizing with student
                 bodies whose names barely made it to the email signature.

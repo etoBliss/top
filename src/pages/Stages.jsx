@@ -58,9 +58,9 @@ export default function Stages() {
         <section className="mx-auto mt-6 max-w-7xl sm:mt-8 md:mt-10">
           <div className="grid gap-4 sm:gap-6 md:grid-cols-4">
             <StatTile value={String(total)} label="Rooms" icon={Mic}    delay={0}   hint="4 categories" />
-            <StatTile value="4"   label="Categories" icon={Calendar} delay={120} hint="Conventions to invited" />
+            <StatTile value="7"   label="Categories" icon={Calendar} delay={120} hint="Conventions attended" />
             <StatTile value="2021—25" label="Span" icon={Calendar} delay={240} />
-            <StatTile value="4"   label="Cities" icon={MapPin}     delay={360} hint="Lagos · Oyo · Ibadan · Ogbomoso" />
+            <StatTile value="6"   label="Cities" icon={MapPin}     delay={360} hint="Lagos · · Ibadan · Osun · Ekiti · Ogbomoso · Abuja" />
           </div>
         </section>
 

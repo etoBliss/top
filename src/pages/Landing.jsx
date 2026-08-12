@@ -16,7 +16,7 @@ const SLIDES = [
     headline: ['Real voice.', 'Real seats.', 'Real work.'],
   },
   {
-    eyebrow: 'Scholarships for every member',
+    eyebrow: 'Community for every member',
     headline: ['No one left', 'on the', 'outside.'],
   },
 ];
@@ -30,7 +30,7 @@ const PAGES = [
 
 const STARTHERE = [
   { num: '01', title: 'The Mandate',   to: '/#mandate',          body: "What TOP stands for — representation, welfare, community." },
-  { num: '02', title: 'Meet TOP',      to: '/leadership',        body: "Who he is, what he's done, what the past four years read like." },
+  { num: '02', title: 'Meet TOP',      to: '/leadership',        body: "Who he is, what he's done, what the past five years read like." },
   { num: '03', title: "What's on his record", to: '/exposure',   body: "Stages · Honors · Roots — the rooms, the wins, the receipts." },
 ];
 
@@ -284,7 +284,7 @@ export default function Landing() {
                 <GraduationCap size={16} className="text-gold" /> {CANDIDATE.summary}
               </li>
               <li className="flex items-center gap-3">
-                <MapPin size={16} className="text-gold" /> LAUMSA · Lagos NG
+                <MapPin size={16} className="text-gold" /> LAUMSA · Ogbomoso NG
               </li>
               <li className="flex items-center gap-3">
                 <Calendar size={16} className="text-gold" /> 2026 Electoral Cycle
@@ -340,7 +340,7 @@ export default function Landing() {
           </p>
           <ul className="flex flex-wrap gap-x-8 gap-y-2 font-mono-set text-[11px] uppercase tracking-[0.22em] text-ivory-muted">
             <li>
-              <span className="text-gold">4 yrs</span> active in LAUMSA
+              <span className="text-gold">5 yrs</span> active in LAUMSA
             </li>
             <li>
               <span className="text-gold">21+</span> rooms stood in
@@ -429,7 +429,7 @@ export default function Landing() {
       <section id="mandate" className="mx-auto mt-16 max-w-7xl md:mt-24 scroll-mt-24">
         <div className="grid gap-4 sm:gap-6 md:grid-cols-3 md:gap-6">
           {[
-            { icon: BookOpen, eyebrow: 'Representation', title: 'Every voice counted.', body: 'A senate that answers — not performs.' },
+            { icon: BookOpen, eyebrow: 'Representation', title: 'Every voice counted.', body: 'A president that answers — not performs.' },
             { icon: Award,     eyebrow: 'Welfare',        title: 'Money that helps.',     body: 'Scholarship funds that reach the students who need them.' },
             { icon: Users,     eyebrow: 'Community',      title: 'Rooms for everyone.',   body: 'Conventions, summits, and skills that build careers.' },
           ].map((m, i) => {

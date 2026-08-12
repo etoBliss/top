@@ -151,7 +151,7 @@ export default function Honors() {
             </div>
             <div className="surface-ink-soft p-8 text-center">
               <span className="block font-display text-[44px] italic leading-none text-ivory md:text-[56px]">
-                2021 — 25
+                2021 — 26
               </span>
               <span className="mt-3 block text-[11px] uppercase tracking-[0.22em] text-ivory-faint">
                 Span

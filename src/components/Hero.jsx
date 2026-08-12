@@ -13,7 +13,7 @@ const SLIDES = [
     headline: ['Real voice.', 'Real seats.', 'Real work.'],
   },
   {
-    eyebrow: 'Scholarships for every member',
+    eyebrow: 'Community for every member',
     headline: ['No one left', 'on the', 'outside.'],
   },
 ];

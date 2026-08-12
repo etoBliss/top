@@ -8,12 +8,12 @@ export const CANDIDATE = {
   name: 'Oluwadolapo Popoola',
   shortName: 'TOP',
   faculty: 'Medicine',
-  level: '400 Level',
+  level: '500 Level',
   school: 'LAUTECH Ogbomoso',
   association: 'LAUMSA',
   cohort: 'Class of 2026',
   program: 'Medicine & Surgery (MBBS)',
-  summary: 'Medicine · 400 Level · LAUTECH Ogbomoso',
+  summary: 'Medicine · 500 Level · LAUTECH Ogbomoso',
 };
 
 // ─────────────────────────────────────────────────────────────────────────
@@ -39,20 +39,23 @@ export const BIO_VOLUNTEER = [
 // ─────────────────────────────────────────────────────────────────────────
 export const STAGES = [
   {
-    label: 'Conventions & summits',
+    label: 'Conventions & summits attended',
     sub: 'Where the medical students gather.',
     items: [
       { title: 'NiMSA SW Convention — TheBowenExperience ’21', dates: '2021' },
       { title: 'NiMSA SW Convention — TheAbuadExperience ’22', dates: '2022' },
       { title: 'FAMSA Convention', dates: '2022' },
       { title: 'The Global Leadership Summit', dates: '2023' },
+      { title: 'NiMSA SW Convention — TheMoshoExperience 24', dates: '2024' },
+      { title: 'CMDA Joint National Conference — Abuja 24', dates: '2024' },
+      { title: 'Caucus Meetings', dates: '2021 — 2026' },
     ],
   },
   {
     label: 'TedX & DevFest',
     sub: 'Big stages, big ideas.',
     items: [
-      { title: 'TedXLautech 1.0 — UpHurn', dates: '2022' },
+      { title: 'TedXLautech 1.0 — UpTurn', dates: '2022' },
       { title: 'TedXLautech 2.0 — The Nexus', dates: '2023' },
       { title: 'GDG DevFest', dates: '2022, 2023, 2024, 2025' },
     ],

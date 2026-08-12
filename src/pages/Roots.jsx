@@ -57,7 +57,7 @@ export default function Roots() {
           <div className="grid gap-4 sm:gap-6 md:grid-cols-4">
             <StatTile value={String(ROOTS_POSITIONS.length)} label="Posts" hint="Class + Association" delay={0} />
             <StatTile value={String(ROOTS_COMMITTEES.length)} label="Committees" hint="In the room" delay={120} />
-            <StatTile value="4" label="Years" hint="Active in LAUMSA" delay={240} />
+            <StatTile value="5" label="Years" hint="Active in LAUMSA" delay={240} />
             <StatTile value="1" label="Goal" accent="crimson" hint="Lead with receipts." delay={360} />
           </div>
         </section>
@@ -72,7 +72,7 @@ export default function Roots() {
               <span className="pill pill-gold">Positions</span>
             </div>
             <h2 className="section-title mt-4 text-[32px] text-ivory md:text-[44px]">
-              Six positions, four years.
+              Six positions, five years.
             </h2>
             <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-ivory-muted">
               From Class Governor to Assistant General Secretary — the posts I
