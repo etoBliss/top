@@ -78,6 +78,18 @@ export default function Landing() {
     setErr('');
     try {
       await subscribeEmail(email, dept || null, 'hero');
+      // Call Vercel serverless welcome endpoint to send welcome email (non-fatal)
+      try {
+        await fetch('/api/welcome', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, dept: dept || null, source: 'hero' }),
+        });
+      } catch (es) {
+        // non-fatal — subscription succeeded even if welcome mail fails
+        // eslint-disable-next-line no-console
+        console.error('welcome send failed', es);
+      }
       setSubmitted(true);
     } catch (e2) {
       setErr(e2?.message || "Couldn't subscribe right now.");
@@ -251,7 +263,7 @@ export default function Landing() {
                   disabled={loading}
                   className="mt-2 inline-flex items-center justify-center gap-2 bg-gold px-5 py-3 font-mono-set text-[12px] font-semibold uppercase tracking-[0.22em] text-ink motion-safe hover:bg-ivory disabled:opacity-50 sm:col-span-2"
                 >
-                  {loading ? '…' : 'Join →'}
+                  {loading ? '…' : 'Subscribe — get a welcome mail'}
                 </button>
                 {err && (
                   <p className="text-[12px] text-crimson-end sm:col-span-2">{err}</p>

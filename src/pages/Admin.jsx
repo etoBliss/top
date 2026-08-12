@@ -6,7 +6,6 @@ import {
 } from 'firebase/auth';
 import { auth, isFirebaseConfigured } from '../firebase/config.js';
 import { getSubscribers, getSends, recordSend } from '../firebase/subscribers.js';
-import { sendToAll, isConfigured } from '../firebase/emailjsService.js';
 import { LogOut, Mail, Users, Send, ShieldCheck, AlertTriangle } from 'lucide-react';
 
 export default function Admin() {
@@ -341,14 +340,15 @@ function ComposePanel({ subscribers, onSent }) {
   const [busy, setBusy] = useState(false);
   const [progress, setProgress] = useState(null);
   const [feedback, setFeedback] = useState('');
-  const configured = isConfigured();
+  const adminKey = import.meta.env.VITE_RESEND_BROADCAST_KEY;
+  const configured = Boolean(adminKey);
 
   const canSend = subscribers.length > 0 && subject.trim() && body.trim();
 
   async function send() {
     if (!canSend) return;
     if (!configured) {
-      setFeedback('EmailJS is not configured. Set VITE_EMAILJS_* in .env.local.');
+      setFeedback('No mail transport configured. Set VITE_RESEND_BROADCAST_KEY in .env.local.');
       return;
     }
     setBusy(true);
@@ -356,25 +356,28 @@ function ComposePanel({ subscribers, onSent }) {
     setProgress({ sent: 0, failed: 0, total: subscribers.length });
 
     try {
-      const res = await sendToAll(
-        subscribers,
-        { subject: subject.trim(), body: body.trim() },
-        {
-          onProgress: ({ total, success, failed }) =>
-            setProgress({ sent: success, failed, total }),
-        },
-      );
+      const headers = {
+        'Content-Type': 'application/json',
+        'x-admin-key': adminKey,
+      };
+      const r = await fetch('/api/broadcast', {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({ subject: subject.trim(), body: body.trim(), emails: subscribers.map((s) => s.email || s.id) }),
+      });
+      if (!r.ok) throw new Error(await r.text());
+      const res = await r.json();
       await recordSend({
         subject: subject.trim(),
         body: body.trim(),
-        count: res.success,
+        count: res.sent || 0,
         sentBy: 'admin',
       });
       setSubject('');
       setBody('');
       setFeedback(
-        `Sent ${res.success} of ${res.total} emails${
-          res.failed ? ` · ${res.failed} failed` : ''
+        `Sent ${res.sent || res.success || 0} of ${res.total || res.total || 0} emails${
+          (res.failed || 0) ? ` · ${res.failed || 0} failed` : ''
         }.`,
       );
       onSent?.();
@@ -394,11 +397,8 @@ function ComposePanel({ subscribers, onSent }) {
 
       {!configured && (
         <p className="mt-4 border-l-2 border-gold/60 bg-gold/10 px-3 py-2 text-[12px] text-ivory-muted">
-          EmailJS is not configured yet — set{' '}
-          <code className="text-gold">VITE_EMAILJS_PUBLIC_KEY</code>,{' '}
-          <code className="text-gold">VITE_EMAILJS_SERVICE_ID</code> and{' '}
-          <code className="text-gold">VITE_EMAILJS_TEMPLATE_ID</code> in{' '}
-          <code className="text-gold">.env.local</code>.
+          Mail is not configured — set <code className="text-gold">VITE_RESEND_BROADCAST_KEY</code> in <code className="text-gold">.env.local</code> and deploy the Vercel serverless function.
+          The admin page sends broadcasts to <code className="text-gold">/api/broadcast</code>.
         </p>
       )}
 
