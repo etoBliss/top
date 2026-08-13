@@ -294,44 +294,6 @@ export default function Landing() {
         </div>
       </section>
 
-      {/* ============ START HERE (first-timer nav direction) ============ */}
-      <section className="mx-auto mt-16 max-w-7xl md:mt-24" aria-label="Start here">
-        <Reveal className="flex flex-col items-center gap-3 text-center">
-          <span className="pill pill-gold">First time?</span>
-          <h2 className="section-title text-[32px] text-ivory sm:text-[44px] md:text-[52px]">
-            Start here.
-          </h2>
-          <p className="max-w-xl text-[15px] leading-relaxed text-ivory-muted">
-            Three doors — pick the one you're looking for.
-          </p>
-        </Reveal>
-
-        <ol className="mt-10 grid gap-4 sm:gap-6 md:grid-cols-3 md:gap-6">
-          {STARTHERE.map((s, i) => (
-            <Reveal as="li" key={s.title} delay={120 + i * 100} className="bento grain relative p-6 md:p-8">
-              <a
-                href={s.to}
-                className="group flex h-full flex-col"
-              >
-                <span className="font-display text-[36px] italic leading-none text-gold md:text-[44px]">
-                  {s.num}
-                </span>
-                <h3 className="mt-4 font-display text-[22px] italic leading-tight text-ivory md:text-[26px]">
-                  {s.title}
-                </h3>
-                <p className="mt-3 flex-1 text-[14px] leading-relaxed text-ivory-muted">
-                  {s.body}
-                </p>
-                <span className="mt-6 inline-flex items-center gap-2 font-mono-set text-[11px] font-semibold uppercase tracking-[0.22em] text-gold">
-                  Open this one
-                  <ArrowUpRight size={14} className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 motion-safe" />
-                </span>
-              </a>
-            </Reveal>
-          ))}
-        </ol>
-      </section>
-
       {/* ============ TRUST STRIP ============ */}
       <section className="mx-auto mt-12 max-w-7xl" aria-label="At a glance">
         <Reveal className="bento grain flex flex-col gap-3 p-6 md:flex-row md:items-center md:justify-between md:p-7">

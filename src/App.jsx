@@ -7,6 +7,7 @@ import Stages from './pages/Stages.jsx';
 import Honors from './pages/Honors.jsx';
 import Roots from './pages/Roots.jsx';
 import Admin from './pages/Admin.jsx';
+import Manifesto from './pages/Manifesto.jsx';
 import NotFound from './pages/NotFound.jsx';
 
 function Site({ children }) {
@@ -23,6 +24,7 @@ export default function App() {
         <Route path="/exposure"   element={<Site><Stages /></Site>} />
         <Route path="/awards"     element={<Site><Honors /></Site>} />
         <Route path="/experience" element={<Site><Roots /></Site>} />
+        <Route path="/manifesto"  element={<Site><Manifesto /></Site>} />
         <Route path="/admin"      element={<Admin />} />
         <Route path="*"           element={<Site><NotFound /></Site>} />
       </Routes>
