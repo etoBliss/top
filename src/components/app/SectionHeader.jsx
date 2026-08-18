@@ -1,7 +1,7 @@
 import Reveal from '../Reveal.jsx';
 
 /**
- * SectionHeader — title + optional eyebrow + optional description.
+ * SectionHeader - title + optional eyebrow + optional description.
  * Visually shared across every page to create consistency.
  */
 export default function SectionHeader({ eyebrow, title, description, align = 'left', children }) {

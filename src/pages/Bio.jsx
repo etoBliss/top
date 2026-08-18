@@ -65,7 +65,7 @@ export default function Bio() {
             <span className="pill pill-gold">Corner note</span>
             <blockquote className="mt-6 font-display text-[24px] italic leading-snug text-ivory sm:text-[32px] md:text-[40px]">
               “I'm not the loudest in the room. I'm usually the one taking
-              notes in the corner — and then quietly making sure the thing
+                notes in the corner - and then quietly making sure the thing
               actually happens.”
             </blockquote>
           </Reveal>

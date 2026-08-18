@@ -1,7 +1,7 @@
 import Reveal from '../Reveal.jsx';
 
 /**
- * BentoCard — single source of truth for cards across the site.
+ * BentoCard - single source of truth for cards across the site.
  * Wraps content in a card with hairline border, soft shadow, and reveal animation.
  */
 export default function BentoCard({

@@ -25,7 +25,7 @@ export default function MeetTop() {
             </Reveal>
           </div>
 
-          {/* Right: meet TOP — simple two-column portrait + copy */}
+          {/* Right: meet TOP - simple two-column portrait + copy */}
           <div className="md:col-span-7">
             <Reveal delay={180}>
               <img
@@ -45,7 +45,7 @@ export default function MeetTop() {
                 "When I launched this campaign, I visited all clinical groups in
                 LAUMSA. I kept hearing the same stories of fear, frustration,
                 and financial pressure. This campaign exists because those
-                stories deserve more than words — they deserve action."
+                stories deserve more than words - they deserve action."
               </p>
               <a
                 href="#about"

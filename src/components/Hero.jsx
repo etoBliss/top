@@ -115,7 +115,7 @@ export default function Hero() {
             )}
           </Reveal>
 
-          {/* Carousel control — minimal text dots */}
+          {/* Carousel control - minimal text dots */}
           <div className="mt-12 flex items-center gap-6">
             <div className="flex gap-2">
               {SLIDES.map((_, i) => (
@@ -140,7 +140,7 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* ───── Portrait — clean, no frame ───── */}
+        {/* ───── Portrait - clean, no frame ───── */}
         <Reveal delay={120}>
           <img
             src={portraitUrl}

@@ -338,14 +338,14 @@ const TEMPLATES = [
   {
     id: 'launchCountdown',
     label: 'Launch countdown',
-    subject: 'Countdown to TOP Campaign launch — 72 hours to go',
+    subject: 'Countdown to TOP Campaign launch - 72 hours to go',
     body: `Hello,
 
-The countdown is on. In just three days the campaign goes live, and we need every supporter ready.
+  The countdown is on. In just three days the campaign goes live, and we need every supporter ready.
 
-Please keep an eye on your inbox for the next dispatch — new actions, event updates, and ways to help turn momentum into impact.
+  Please keep an eye on your inbox for the next dispatch - new actions, event updates, and ways to help turn momentum into impact.
 
-— TOP Campaign`,
+  - TOP Campaign`,
   },
   {
     id: 'finalReminder',
@@ -353,11 +353,11 @@ Please keep an eye on your inbox for the next dispatch — new actions, event up
     subject: 'Final reminder: countdown to campaign launch',
     body: `Hi there,
 
-This is your last reminder before launch day. The countdown is ticking, and your support matters now more than ever.
+  This is your last reminder before launch day. The countdown is ticking, and your support matters now more than ever.
 
-Share the campaign, invite friends, and stand by for the first major update.
+  Share the campaign, invite friends, and stand by for the first major update.
 
-— TOP Campaign`,
+  - TOP Campaign`,
   },
   {
     id: 'countdownPreview',
@@ -365,11 +365,11 @@ Share the campaign, invite friends, and stand by for the first major update.
     subject: 'Preview inside: campaign countdown updates',
     body: `Hello,
 
-A fresh dispatch is ready with the countdown energy: the campaign is closing in fast.
+  A fresh dispatch is ready with the countdown energy: the campaign is closing in fast.
 
-Expect a short series of high-impact updates, invitations, and milestone announcements before launch.
+  Expect a short series of high-impact updates, invitations, and milestone announcements before launch.
 
-— TOP Campaign`,
+  - TOP Campaign`,
   },
   {
     id: 'launchReadiness',
@@ -377,11 +377,11 @@ Expect a short series of high-impact updates, invitations, and milestone announc
     subject: 'Launch readiness: one final countdown update',
     body: `Hello,
 
-The launch window is approaching, and this final countdown update is built to keep the team ready.
+  The launch window is approaching, and this final countdown update is built to keep the team ready.
 
-If you want to join the core actions, now is the time to check your inbox, share the campaign, and stay tuned for launch day instructions.
+  If you want to join the core actions, now is the time to check your inbox, share the campaign, and stay tuned for launch day instructions.
 
-— TOP Campaign`,
+  - TOP Campaign`,
   },
 ];
 
@@ -512,7 +512,7 @@ function ComposePanel({ subscribers, onSent }) {
         <textarea
           value={body}
           onChange={(e) => setBody(e.target.value)}
-          placeholder="Write the message. Plain text — line breaks are preserved."
+          placeholder="Write the message. Plain text - line breaks are preserved."
           rows={9}
           className="mt-2 w-full resize-y border border-line bg-transparent p-3 text-[14px] leading-relaxed text-ivory outline-none placeholder:text-ivory-faint focus:border-ivory motion-safe"
         />

@@ -76,7 +76,7 @@ export default function AppFooter() {
                 </span>
               </div>
               <p className="mt-6 text-[14px] leading-relaxed text-ivory-muted">
-                Built quietly. Run with direction. Every member of LAUMSA, to where they belong — right at the TOP.
+                Built quietly. Run with direction. Every member of LAUMSA, to where they belong - right at the TOP.
               </p>
             </div>
 
@@ -102,7 +102,7 @@ export default function AppFooter() {
             </span>
             <div className="flex items-center gap-4">
               <Link to="/manifesto" className="font-mono-set uppercase tracking-[0.22em] text-gold motion-safe hover:text-ivory">
-                Manifesto • Coming soon
+                Manifesto
               </Link>
             </div>
           </div>

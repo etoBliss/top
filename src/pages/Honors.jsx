@@ -44,7 +44,7 @@ export default function Honors() {
                   Honors.
                 </h1>
                 <p className="mt-6 max-w-xl text-[16px] leading-relaxed text-ivory-muted">
-                  A well-rounded record — academics, socials, and everything
+                  A well-rounded record - academics, socials, and everything
                   in between. The full list, nothing trimmed.
                 </p>
               </div>
@@ -52,8 +52,8 @@ export default function Honors() {
                 <div className="flex h-full items-center">
                   <Quote className="h-10 w-10 text-gold" />
                   <p className="ml-4 font-display text-[20px] italic leading-snug text-ivory md:text-[24px]">
-                    “LAUMSA deserves a leader that is well-rounded —
-                    academically, socially, and in all regards.”
+                    “LAUMSA deserves a leader that is well-rounded -
+                      academically, socially, and in all regards.”
                   </p>
                 </div>
               </div>
@@ -132,7 +132,7 @@ export default function Honors() {
             </p>
           </Reveal>
 
-          <div className="mt-8 grid gap-px rounded-3xl bg-[var(--color-line)] md:grid-cols-3" style={{ overflow: 'hidden' }}>
+            <div className="mt-8 grid gap-px rounded-3xl bg-[var(--color-line)] md:grid-cols-3" style={{ overflow: 'hidden' }}>
             <div className="surface-ink-soft p-8 text-center">
               <span className="block font-display text-[56px] italic leading-none text-ivory md:text-[72px]">
                 {nominationTotal}
@@ -151,7 +151,7 @@ export default function Honors() {
             </div>
             <div className="surface-ink-soft p-8 text-center">
               <span className="block font-display text-[44px] italic leading-none text-ivory md:text-[56px]">
-                2021 — 26
+                2021 - 26
               </span>
               <span className="mt-3 block text-[11px] uppercase tracking-[0.22em] text-ivory-faint">
                 Span

@@ -37,7 +37,7 @@ export default function Stages() {
                 </h1>
                 <p className="mt-6 max-w-xl text-[16px] leading-relaxed text-ivory-muted">
                   Exposure shapes perspective. Perspective shapes decisions.
-                  Here's a running list of the rooms I've stood in — from
+                  Here's a running list of the rooms I've stood in - from
                   conventions to summits to small invited tables.
                 </p>
               </div>
@@ -59,7 +59,7 @@ export default function Stages() {
           <div className="grid gap-4 sm:gap-6 md:grid-cols-4">
             <StatTile value={String(total)} label="Rooms" icon={Mic}    delay={0}   hint="4 categories" />
             <StatTile value="7"   label="Categories" icon={Calendar} delay={120} hint="Conventions attended" />
-            <StatTile value="2021—25" label="Span" icon={Calendar} delay={240} />
+            <StatTile value="2021 - 25" label="Span" icon={Calendar} delay={240} />
             <StatTile value="6"   label="Cities" icon={MapPin}     delay={360} hint="Lagos · · Ibadan · Osun · Ekiti · Ogbomoso · Abuja" />
           </div>
         </section>

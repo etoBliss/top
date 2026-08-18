@@ -15,7 +15,7 @@ const firebaseConfig = {
 
 /**
  * True when every required Firebase env var is present and non-empty.
- * When false, the public site still works — only /admin surfaces a notice.
+ * When false, the public site still works - only /admin surfaces a notice.
  */
 export function isFirebaseConfigured() {
   return Object.values(firebaseConfig).every((v) => typeof v === 'string' && v.trim() !== '');

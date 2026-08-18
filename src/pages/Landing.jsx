@@ -22,16 +22,16 @@ const SLIDES = [
 ];
 
 const PAGES = [
-  { to: '/leadership',  label: 'Bio',     desc: 'The story behind the work — external roles, committees, and the build beyond boundaries.', eyebrow: 'Who is TOP',    start: 'Start here if you want to know the person behind the campaign.' },
-  { to: '/exposure',    label: 'Stages',  desc: 'Conferences, conventions, summits — every room TOP has shown up in.',                    eyebrow: 'Experience', start: 'Start here if you want proof of perspective — what TOP has seen and shaped.' },
-  { to: '/awards',      label: 'Honors',  desc: 'Scholarships, awards, nominations — proof on paper.',                                  eyebrow: 'Proof',       start: 'Start here if you want the wins: scholarships, awards, nominations.' },
+  { to: '/leadership',  label: 'Bio',     desc: 'The story behind the work - external roles, committees, and the build beyond boundaries.', eyebrow: 'Who is TOP',    start: 'Start here if you want to know the person behind the campaign.' },
+  { to: '/exposure',    label: 'Stages',  desc: 'Conferences, conventions, summits - every room TOP has shown up in.',                    eyebrow: 'Experience', start: 'Start here if you want proof of perspective - what TOP has seen and shaped.' },
+  { to: '/awards',      label: 'Honors',  desc: 'Scholarships, awards, nominations - proof on paper.',                                  eyebrow: 'Proof',       start: 'Start here if you want the wins: scholarships, awards, nominations.' },
   { to: '/experience',  label: 'Roots',   desc: 'Posts, committees, the work that built the habit before the campaign.',                 eyebrow: 'Inside LAUMSA', start: 'Start here if you want receipts: every post, every committee inside LAUMSA.' },
 ];
 
 const STARTHERE = [
-  { num: '01', title: 'The Mandate',   to: '/#mandate',          body: "What TOP stands for — representation, welfare, community." },
+  { num: '01', title: 'The Mandate',   to: '/#mandate',          body: "What TOP stands for - representation, welfare, community." },
   { num: '02', title: 'Meet TOP',      to: '/leadership',        body: "Who he is, what he's done, what the past five years read like." },
-  { num: '03', title: "What's on his record", to: '/exposure',   body: "Stages · Honors · Roots — the rooms, the wins, the receipts." },
+  { num: '03', title: "What's on his record", to: '/exposure',   body: "Stages · Honors · Roots - the rooms, the wins, the receipts." },
 ];
 
 export default function Landing() {

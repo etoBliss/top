@@ -10,8 +10,8 @@ import { Users, Layers, Quote } from 'lucide-react';
  * Bento composition:
  *   1. Lead card (pull quote)
  *   2. Stat row
- *   3. Positions card — numbered vertical timeline
- *   4. Committees card — wrap-list
+ *   3. Positions card - numbered vertical timeline
+ *   4. Committees card - wrap-list
  */
 export default function Roots() {
   return (
@@ -34,7 +34,7 @@ export default function Roots() {
                   Roots.
                 </h1>
                 <p className="mt-6 max-w-xl text-[16px] leading-relaxed text-ivory-muted">
-                  The work that happened before the campaign — the
+                  The work that happened before the campaign - the
                   committees, the class offices, the things that built the
                   habit.
                 </p>
@@ -75,7 +75,7 @@ export default function Roots() {
               Six positions, five years.
             </h2>
             <p className="mt-3 max-w-xl text-[15px] leading-relaxed text-ivory-muted">
-              From Class Governor to Assistant General Secretary — the posts I
+              From Class Governor to Assistant General Secretary - the posts I
               held, the rooms I was in charge of, and the things that got built.
             </p>
 

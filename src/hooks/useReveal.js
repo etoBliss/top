@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 
 /**
- * useReveal — IntersectionObserver-based reveal.
+ * useReveal - IntersectionObserver-based reveal.
  * Returns [ref, isVisible]. Once visible, stays visible.
  */
 export function useReveal({ threshold = 0.18, rootMargin = '0px 0px -10% 0px', once = true } = {}) {

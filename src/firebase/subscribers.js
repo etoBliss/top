@@ -39,7 +39,7 @@ function ensureConfigured() {
 }
 
 /**
- * Subscribe an email. Idempotent — repeated submissions just update the
+ * Subscribe an email. Idempotent - repeated submissions just update the
  * `joinedAt` field. Returns { ok, email }.
  */
 export async function subscribeEmail(email, year = null, source = 'hero') {

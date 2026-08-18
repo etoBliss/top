@@ -1,7 +1,7 @@
 import logoUrl from '/logo.jpeg?url';
 
 /**
- * Logo — campaign logo image.
+ * Logo - campaign logo image.
  *
  * The logo is a circular wine-on-cream mark from the candidate. We render
  * it as a plain <img>, sized via the `size` prop. No frame, no chrome.

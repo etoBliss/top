@@ -9,6 +9,7 @@ const LINKS = [
   { to: '/awards', label: 'Honors', icon: ScrollText },
   { to: '/experience', label: 'Roots', icon: Layers },
   { to: '/leadership', label: 'Bio', icon: UserRound },
+  { to: '/manifesto', label: 'Manifesto', icon: ScrollText },
 ];
 
 export default function TopNav() {

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 /**
- * Reveal — IntersectionObserver fade + translate-up wrapper.
+ * Reveal - IntersectionObserver fade + translate-up wrapper.
  */
 export default function Reveal({
   children,
