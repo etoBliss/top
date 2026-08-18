@@ -8,8 +8,8 @@ const LINKS = [
   { to: '/exposure', label: 'Stages', icon: Compass },
   { to: '/awards', label: 'Honors', icon: ScrollText },
   { to: '/experience', label: 'Roots', icon: Layers },
-  { to: '/leadership', label: 'Bio', icon: UserRound },
   { to: '/manifesto', label: 'Manifesto', icon: ScrollText },
+  { to: '/leadership', label: 'Bio', icon: UserRound },
 ];
 
 export default function TopNav() {
@@ -73,14 +73,20 @@ export default function TopNav() {
           ))}
         </nav>
 
-        {/* Mobile-only small profile link */}
-        <Link
-          to="/leadership"
-          aria-label="Bio"
-          className="grid h-9 w-9 place-items-center rounded-full bg-ink-card text-gold md:hidden"
+        {/* Mobile-only Manifesto shortcut (replaces the old profile icon) */}
+        <NavLink
+          to="/manifesto"
+          aria-label="Manifesto"
+          className={({ isActive }) =>
+            [
+              'grid h-9 w-9 place-items-center rounded-full bg-ink-card md:hidden',
+              isActive ? 'text-gold' : 'text-ivory-faint hover:text-ivory',
+              'motion-safe',
+            ].join(' ')
+          }
         >
-          <UserRound size={16} />
-        </Link>
+          <ScrollText size={16} />
+        </NavLink>
       </div>
     </header>
   );

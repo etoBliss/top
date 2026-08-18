@@ -6,6 +6,7 @@ const ITEMS = [
   { to: '/exposure', label: 'Stages', icon: Compass },
   { to: '/awards', label: 'Honors', icon: ScrollText },
   { to: '/experience', label: 'Roots', icon: Layers },
+  { to: '/manifesto', label: 'Vision', icon: ScrollText },
   { to: '/leadership', label: 'Bio', icon: UserRound },
 ];
 
@@ -21,9 +22,9 @@ export default function BottomDock() {
       role="navigation"
       aria-label="Primary mobile"
     >
-      <div className="mx-auto w-full max-w-md px-4 pb-3">
+      <div className="mx-auto w-full max-w-md px-3 pb-3">
         <nav
-          className="glass flex h-16 items-center justify-around rounded-3xl border border-white/8 shadow-[var(--shadow-dock)]"
+          className="glass flex h-16 items-stretch justify-around rounded-3xl border border-white/8 shadow-[var(--shadow-dock)]"
           aria-label="Primary mobile"
         >
           {ITEMS.map((it) => {
@@ -43,7 +44,7 @@ export default function BottomDock() {
                 {({ isActive }) => (
                   <>
                     <Icon size={20} strokeWidth={isActive ? 2 : 1.8} />
-                    <span className="font-mono-set text-[9px] font-semibold uppercase tracking-[0.2em]">
+                    <span className="font-mono-set text-[8px] font-semibold uppercase leading-tight tracking-[0.16em]">
                       {it.label}
                     </span>
                   </>
